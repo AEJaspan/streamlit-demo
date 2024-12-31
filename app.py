@@ -8,6 +8,9 @@ from langchain_openai import OpenAI
 from langchain_openai.embeddings import OpenAIEmbeddings
 # from dotenv import load_dotenv, find_dotenv
 import os
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # load_dotenv(find_dotenv())
 # OpenAI API Key (use your key or secrets)
 os.environ["OPENAI_API_KEY"] = st.secrets.get("OPENAI_API_KEY", None)

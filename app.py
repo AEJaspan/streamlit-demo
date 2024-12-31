@@ -9,7 +9,10 @@ from langchain_openai.embeddings import OpenAIEmbeddings
 import os
 import sqlite3
 import hashlib
-
+import sqlite3
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # Initialize SQLite database for user management and usage tracking
 conn = sqlite3.connect("user_management.db")
 cursor = conn.cursor()

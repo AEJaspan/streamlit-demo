@@ -1,16 +1,24 @@
 import streamlit as st
 import re
 from langchain.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage, AIMessage, SystemMessage, BaseMessage
+from langchain.schema import HumanMessage, AIMessage, SystemMessage
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
-from langchain.vectorstores import Chroma 
+from langchain.vectorstores import Chroma
 from langchain_openai import OpenAI
 from langchain_openai.embeddings import OpenAIEmbeddings
-from dotenv import load_dotenv, find_dotenv
+# from dotenv import load_dotenv, find_dotenv
 import os
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 # OpenAI API Key (use your key or secrets)
-
+os.environ["OPENAI_API_KEY"] = st.secrets.get("OPENAI_API_KEY", None)
+os.environ["APIFY_API_TOKEN"] = st.secrets.get("APIFY_API_TOKEN", None)
+os.environ["APIFY_DATASET_ID"] = st.secrets.get("APIFY_DATASET_ID", None)
+if not os.environ["OPENAI_API_KEY"]:
+    st.error("API Key not found in secrets.")
+if not os.environ["APIFY_API_TOKEN"]:
+    st.error("APIFY API Token not found in secrets.")
+if not os.environ["APIFY_DATASET_ID"]:
+    st.error("APIFY Dataset ID not found in secrets.")
 openai_api_key = os.environ["OPENAI_API_KEY"] # st.secrets.get("openai_api_key", "your_openai_api_key")
 llm = ChatOpenAI(temperature=0.7, model="gpt-4o-mini", openai_api_key=openai_api_key)
 persist_directory = "embedding/chroma"

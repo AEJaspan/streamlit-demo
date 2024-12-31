@@ -18,6 +18,9 @@ chromadb = "^0.6.0"
 pysqlite3-binary = "^0.5.4"
 
 
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

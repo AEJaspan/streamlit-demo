@@ -92,7 +92,7 @@ if st.session_state.url_verified:
         with st.chat_message("assistant"):
             message_placeholder = st.empty()
             # query = "Which keyboards has USB-C charging?"
-            result = index.query_with_sources(user_input, llm=OpenAI())
+            result = index.query_with_sources(user_input, llm=ChatOpenAI(model="gpt-4o-mini"))
             # print(result["answer"])
             # print(result["sources"])
             st.session_state.messages.append(SystemMessage(content=f"Retrieval has found: {result['answer']} \n Sources: {result['sources']}"))

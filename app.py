@@ -31,7 +31,7 @@ vectorstore = Chroma(persist_directory=persist_directory, embedding_function=emb
 index = VectorStoreIndexWrapper(vectorstore=vectorstore)
 # Check if URL is an Amazon URL
 def is_amazon_url(url):
-    amazon_pattern = r"(https?://)?(www\.)?amazon\.[a-z]{2,3}(/[\S]*)?"
+    amazon_pattern = r"(https?://)?(www\.)?(amazon|amzn)\.[a-z]{2,3}(/[\S]*)?"
     return bool(re.match(amazon_pattern, url, re.IGNORECASE))
 
 # Initialize session state

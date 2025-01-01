@@ -1,4 +1,6 @@
 import streamlit as st
+# Function to track usage
+from datetime import datetime
 import re
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
@@ -50,8 +52,7 @@ def authenticate_user(username, password):
         return stored_password_hash == hashlib.sha256(password.encode()).hexdigest()
     return False
 
-# Function to track usage
-from datetime import datetime
+
 
 # Function to track usage and reset daily
 def use_app(username):
